@@ -1,0 +1,11 @@
+div {
+    border-style: solid;
+    border-width: 0.05rem;
+    display: inline-block;
+    padding:1rem;
+}
+
+ul {
+    padding:0.75rem;
+    
+}
