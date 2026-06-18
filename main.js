@@ -142,9 +142,9 @@ let dte;
 let months =["January","February","March","April","May","June","July","August","September","October","November","December"]
 for (const element of list) {
     ExamUnixTime = (new Date(year, element["month"]-1, element["day"])).getTime();
-    dte = (ExamUnixTime - cut)/86400000;
+    dte = (cut-ExamUnixTime)/86400000;
 
-    weeksUntil = Math.floor(dte/7);
+    weeksAgo = Math.floor(dte/7);
     daysUntilAfterWeeks = dte % 7;
     monthText = months[element["month"]-1]
 
@@ -158,7 +158,7 @@ for (const element of list) {
     }
     
     ul.innerHTML += `<li>${element["day"]} ${monthText}</li>\n`;
-    ul.innerHTML += `<li>In <b>${dte}</b> days (${weeksUntil} weeks and ${daysUntilAfterWeeks} days)</li>\n`;
+    ul.innerHTML += `<li><b>${dte}</b> days ago (${weeksAgo} weeks and ${daysUntilAfterWeeks} days)</li>\n`;
     // p.innerText = element["subject"] + " " + element["paperNumber"] + " " + dte + " Days to go!!";
     colour = colours[element["urgency"]];
     box.style.backgroundColor = colour
