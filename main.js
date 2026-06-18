@@ -143,31 +143,30 @@ let months =["January","February","March","April","May","June","July","August","
 for (const element of list) {
     ExamUnixTime = (new Date(year, element["month"]-1, element["day"])).getTime();
     dte = (ExamUnixTime - cut)/86400000;
-    if (dte >= 0) {
-        weeksUntil = Math.floor(dte/7);
-        daysUntilAfterWeeks = dte % 7;
-        monthText = months[element["month"]-1]
 
-        
-        box = document.createElement("div");
-        ul = document.createElement("ul");
-        if (element["paperNumber"] !== 0) {
-            ul.innerHTML += `<li>${element["subject"]} (Paper ${element["paperNumber"]})</li>\n`;
-        } else {
-            ul.innerHTML += `<li>${element["subject"]}</li>\n`;
-        }
-        
-        ul.innerHTML += `<li>${element["day"]} ${monthText}</li>\n`;
-        ul.innerHTML += `<li>In <b>${dte}</b> days (${weeksUntil} weeks and ${daysUntilAfterWeeks} days)</li>\n`;
-        // p.innerText = element["subject"] + " " + element["paperNumber"] + " " + dte + " Days to go!!";
-        colour = colours[element["urgency"]];
-        box.style.backgroundColor = colour
-        if (colour === "red") {
-            ul.style.color = "white"; // this is a bit rubbish, i should probably be setting the style of the li's.... (too much effort tho)
-        };
-        box.appendChild(ul);
-        document.getElementById("Container").append(box);
+    weeksUntil = Math.floor(dte/7);
+    daysUntilAfterWeeks = dte % 7;
+    monthText = months[element["month"]-1]
+
+    
+    box = document.createElement("div");
+    ul = document.createElement("ul");
+    if (element["paperNumber"] !== 0) {
+        ul.innerHTML += `<li>${element["subject"]} (Paper ${element["paperNumber"]})</li>\n`;
+    } else {
+        ul.innerHTML += `<li>${element["subject"]}</li>\n`;
     }
+    
+    ul.innerHTML += `<li>${element["day"]} ${monthText}</li>\n`;
+    ul.innerHTML += `<li>In <b>${dte}</b> days (${weeksUntil} weeks and ${daysUntilAfterWeeks} days)</li>\n`;
+    // p.innerText = element["subject"] + " " + element["paperNumber"] + " " + dte + " Days to go!!";
+    colour = colours[element["urgency"]];
+    box.style.backgroundColor = colour
+    if (colour === "red") {
+        ul.style.color = "white"; // this is a bit rubbish, i should probably be setting the style of the li's.... (too much effort tho)
+    };
+    box.appendChild(ul);
+    document.getElementById("Container").append(box);
 
 }
 
